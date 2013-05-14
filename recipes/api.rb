@@ -21,7 +21,15 @@ apt_repository "gridcentric-#{node["vms"]["os-version"]}" do
   only_if { platform?("ubuntu") }
 end
 
-package "nova-api-gridcentric" do
-  action :upgrade
-  options "-o APT::Install-Recommends=0"
+if ["folsom", "essex", "diablo"].include?(node["vms"]["os-version"])
+  package "nova-api-gridcentric" do
+    action :upgrade
+    options "-o APT::Install-Recommends=0"
+  end
+else
+  package "cobalt-api" do
+    action :upgrade
+    options "-o APT::Install-Recommends=0"
+  end
 end
+

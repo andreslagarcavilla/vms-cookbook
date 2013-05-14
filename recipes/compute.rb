@@ -42,9 +42,16 @@ if not node["vms"]["sysconfig"]["vms_ceph_conf"].nil?
   end
 end
 
-package "nova-compute-gridcentric" do
-  action :upgrade
-  options "-o APT::Install-Recommends=0 -o Dpkg::Options::='--force-confnew'"
+if ["folsom", "essex", "diablo"].include?(node["vms"]["os-version"])
+  package "nova-compute-gridcentric" do
+    action :upgrade
+    options "-o APT::Install-Recommends=0 -o Dpkg::Options::='--force-confnew'"
+  end
+else
+  package "cobalt-compute" do
+    action :upgrade
+    options "-o APT::Install-Recommends=0 -o Dpkg::Options::='--force-confnew'"
+  end
 end
 
 template "/etc/sysconfig/vms" do
