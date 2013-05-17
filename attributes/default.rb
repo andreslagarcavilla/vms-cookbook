@@ -30,4 +30,5 @@ default["vms"]["sysconfig"]["shared_volume"] = nil
 # use the private key provided to you by Gridcentric.
 default["vms"]["repo"]["url"] = "http://downloads.gridcentriclabs.com/packages"
 default["vms"]["repo"]["agent_key"] = "agent"
+default["vms"]["repo"]["client_key"] = "cobaltclient"
 default["vms"]["repo"]["private_key"] = nil
