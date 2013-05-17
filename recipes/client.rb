@@ -22,17 +22,11 @@ apt_repository "gridcentric-#{node["vms"]["os-version"]}" do
 end
 
 if ["folsom", "essex", "diablo"].include?(node["vms"]["os-version"])
-  package "python-novaclient" do
-    action :upgrade
-  end
   package "novaclient-gridcentric" do
     action :upgrade
     options "-o APT::Install-Recommends=0"
   end
 else
-  package "python-cobalt" do
-    action :upgrade
-  end
   package "cobalt-novaclient" do
     action :upgrade
     options "-o APT::Install-Recommends=0"
