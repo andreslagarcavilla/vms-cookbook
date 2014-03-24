@@ -43,7 +43,9 @@ end
     else
       parts.push(node["gridcentric"]["os-version"])
     end
-    parts.push(Repositories.translate_distro_to_repo_type(node["platform"]))
+    parts.push(Repositories.translate_distro_to_repo_type(node["platform"],
+                                        node["platform_version"], component,
+                                        node["gridcentric"]["os-version"]))
     node.normal["gridcentric"]["repo"][component]["uri"] = parts.join("/")
   end
 end
